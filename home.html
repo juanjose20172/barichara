@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colombia Travel Bucket List | Barichara</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS STYLES */
+        :root {
+            --primary-color: #d35400; /* Terracotta */
+            --secondary-color: #2c3e50; /* Dark Blue/Gray */
+            --bg-light: #f9f7f1; /* Off-white / Stone */
+            --text-color: #333333;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--secondary-color);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: transparent;
+            transition: 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        nav.scrolled {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 50px;
+        }
+
+        nav.scrolled .logo, nav.scrolled ul li a {
+            color: var(--secondary-color);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section (Home) */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1596422846543-75c6fc197f0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            color: var(--white);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-3px);
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            display: block;
+            margin: 10px auto 0;
+        }
+
+        /* Where to Go & What to Do Cards */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .card-content p {
+            font-size: 0.95rem;
+        }
+
+        strong {
+            color: var(--secondary-color);
+            background-color: #fcebd7;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        /* Travel Tips Section */
+        #travel-tips {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        #travel-tips .section-title {
+            color: var(--white);
+        }
+
+        .tips-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tips-list li {
+            background: rgba(255,255,255,0.1);
+            margin-bottom: 15px;
+            padding: 20px;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 5px;
+        }
+
+        .tips-list strong {
+            background-color: transparent;
+            color: #f39c12;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a252f;
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px;
+                background-color: var(--secondary-color);
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            nav ul li {
+                margin: 0 10px;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            section {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#home" class="logo">MyBucketList</a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#where-to-go">Where to Go</a></li>
+            <li><a href="#what-to-do">What to Do</a></li>
+            <li><a href="#travel-tips">Travel Tips</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <h1>Barichara, Santander</h1>
+        <p><strong>Why should your chosen destination definitely be on your bucket list?</strong><br>
+        Have you ever dreamed of a place where time stops? Barichara is a mandatory destination for travelers in Colombia. This town is famous for its yellow stone architecture and its very peaceful atmosphere. It is the perfect spot if you want to relax and enjoy history.</p>
+        <a href="#where-to-go" class="btn">Start Exploring</a>
+    </header>
+
+    <section id="where-to-go">
+        <h2 class="section-title">Where to Go</h2>
+        <div class="grid-container">
+            <div class="card">
+                <!-- https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/d5/ab/c8/catedral-de-frente.jpg?w=1200&h=-1&s=1 -->
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0b/d5/ab/c8/catedral-de-frente.jpg?w=1200&h=-1&s=1&auto=format&fit=crop&w=600&q=80" alt="Cathedral">
+                <div class="card-content">
+                    <h3>The Cathedral</h3>
+                    <p>You <strong>must visit</strong> the Cathedral of the Immaculate Conception because its architecture is unique in Santander.</p>
+                </div>
+            </div>
+            <div class="card">
+                <!-- https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/9e/7e/c3/photo0jpg.jpg?w=1200&h=-1&s=1 -->
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/9e/7e/c3/photo0jpg.jpg?w=1200&h=-1&s=1&auto=format&fit=crop&w=600&q=80" alt="Santa Barbara Chapel">
+                <div class="card-content">
+                    <h3>Santa Barbara Chapel</h3>
+                    <p>You <strong>should go up</strong> to Santa Barbara Chapel at the top of the hill. When you <strong>look around</strong> from the viewpoints, you can see the amazing Suarez Canyon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="what-to-do">
+        <h2 class="section-title">What to Do</h2>
+        <div class="grid-container">
+            <div class="card">
+                <!-- https://s2.wklcdn.com/image_20/600791/11808288/7219832.jpg -->
+                <img src="https://s2.wklcdn.com/image_20/600791/11808288/7219832.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hiking">
+                <div class="card-content">
+                    <h3>Hike the Camino Real</h3>
+                    <p>If you walk the Camino Real to Guane, you <strong>will find out</strong> many things about colonial history and enjoy nature.</p>
+                </div>
+            </div>
+            <div class="card">
+                <!-- https://cdn.baquianos.com/img/blog/2021/9/salto-del-mico-2-cq0x640.jpg -->
+                <img src="https://cdn.baquianos.com/img/blog/2021/9/salto-del-mico-2-cq0x640.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mountains">
+                <div class="card-content">
+                    <h3>Salto del Mico</h3>
+                    <p>You <strong>should hike up</strong> to Salto del Mico to take beautiful photos of the mountains.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://radionacional-v3.s3.amazonaws.com/s3fs-public/inline-images/IMG_3279%20%281%29%20%282%29.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Workshop">
+                <div class="card-content">
+                    <h3>Stone Carving Workshop</h3>
+                    <p>If you visit a local workshop, you <strong>can learn</strong> how to carve stone like a professional.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://www.prensa-latina.cu/wp-content/uploads/2024/04/hormigas-culonas-Colombia-1.jpg?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Local Food">
+                <div class="card-content">
+                    <h3>Taste Local Food</h3>
+                    <p>If you eat "hormigas culonas", you <strong>experience</strong> a very traditional and unique flavor of Santander.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="travel-tips">
+        <h2 class="section-title">Travel Tips</h2>
+        <ul class="tips-list">
+            <li><strong>1. Comfortable Shoes:</strong> You <strong>have to wear</strong> comfortable shoes because the streets are made of stone.</li>
+            <li><strong>2. Sun Protection:</strong> You <strong>must put on</strong> sunscreen every day to protect your skin from the strong sun.</li>
+            <li><strong>3. Money:</strong> You <strong>should carry</strong> cash because some small shops and artisans do not accept credit cards.</li>
+            <li><strong>4. Culture:</strong> You <strong>must not forget</strong> to be respectful with the local people and their quiet traditions.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Designed by Juan Gamboa | English B1 &ndash; Task 2: Colombia Travel Bucket List &copy; 2026</p>
+        <!-- <p>Designed by Juan Gamboa for English B1 - Task 2 Colombia Travel Bucket List &copy; 2026</p> -->
+    </footer>
+
+    <script>
+        // JS to make the navigation bar sticky and change background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
